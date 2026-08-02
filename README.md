@@ -7,6 +7,12 @@ internet PTT rides the Nexus room only.
 This repository contains everything needed to **prepare an ASL3 node** for BYON.
 Download Magic PTT Desktop from [magicptt.com](https://magicptt.com) (**0.3.23+**).
 
+> **Ownership:** BYON is a **Magic PTT add-on**, not open source. SHTF Radio Networks
+> retains all rights. You may use these files only to prep **your own** node for
+> **your** Magic PTT My Room. Do not redistribute, fork for others, or build a
+> competing service from this repo. Live BYON access may become a **premium Magic PTT
+> feature**; this repo does not grant platform access by itself. See `LICENSE`.
+
 ## Architecture
 
 ```
@@ -63,7 +69,15 @@ Member nodes often use **`*99`** to key phone-mode PTT. Some central hub systems
 
 ## License
 
-MIT — see `LICENSE`.
+**Proprietary — all rights reserved.** Not MIT, not GPL, not public domain.
+
+See [`LICENSE`](LICENSE). Summary:
+
+- **Allowed:** run `install.sh` on **your** ASL3 node to link **your** My Room via Magic PTT Desktop, while you have a valid Magic PTT account and admin-enabled AllStar Link.
+- **Not allowed:** redistribute, sell, mirror, fork for others, strip notices, or use any of this to build a competing PTT/bridge product.
+- **Premium:** Magic PTT may charge for BYON / AllStar Link in the future; cloning this repo does not bypass that.
+
+Questions or licensing requests: magicptt.com.
 
 ## Status
 

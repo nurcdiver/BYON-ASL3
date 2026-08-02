@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-# BYON one-shot ASL3 node prep.
+# BYON one-shot ASL3 node prep — Magic PTT proprietary add-on.
+# Copyright (c) 2026 SHTF Radio Networks. See LICENSE (not open source).
 # Usage: sudo ./install.sh --node YOUR_NODE --sip-user USER --sip-password PASS --lan 192.168.1.0/24
 set -euo pipefail
 

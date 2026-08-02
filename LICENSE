@@ -1,21 +1,77 @@
-MIT License
+MAGIC PTT BYON NODE ADD-ON — PROPRIETARY LICENSE
 
-Copyright (c) 2026 SHTF Radio Networks / Magic PTT contributors
+Copyright (c) 2026 SHTF Radio Networks. All rights reserved.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+This repository and everything in it (scripts, templates, documentation, and
+configuration — together, the "Materials") is proprietary software published by
+SHTF Radio Networks for use with the Magic PTT platform (magicptt.com).
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+Magic PTT, Nexus, BYON (Bring Your Own Node), and related marks are not open
+source. This is an add-on to Magic PTT, not a standalone product. Access to
+the live BYON bridge may become a paid or premium Magic PTT feature; possessing
+these files does not grant service access beyond whatever Magic PTT provides
+under its own terms.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+---------------------------------------------------------------------------
+LIMITED PERMISSION (read carefully — this is NOT an open-source license)
+---------------------------------------------------------------------------
+
+You may clone or download the Materials ONLY IF you agree to this license, and
+ONLY to run install.sh (and related scripts) on a single AllStarLink3 node that
+you own or operate, for the sole purpose of linking that node to YOUR Magic PTT
+My Room using Magic PTT Desktop on the same LAN, while:
+
+  • you hold a valid Magic PTT account;
+  • AllStar Link is enabled for that My Room by Magic PTT administration; and
+  • you comply with Magic PTT terms of use.
+
+No other use is permitted.
+
+---------------------------------------------------------------------------
+PROHIBITED WITHOUT PRIOR WRITTEN PERMISSION FROM SHTF RADIO NETWORKS
+---------------------------------------------------------------------------
+
+  • Copying, modifying, merging, or creating derivative works of the Materials
+    for any purpose other than the limited install on your own node described above
+  • Publishing, distributing, sublicensing, renting, leasing, or selling the
+    Materials or any derivative
+  • Hosting public or private mirrors, forks, or repackaged copies for others
+  • Using the Materials (or any part of them) to design, build, or operate a
+    competing push-to-talk app, RF bridge, SIP bridge, or similar service
+  • Removing or altering copyright, trademark, or license notices
+  • Any commercial use of the Materials
+  • Using the Materials without the Magic PTT platform and Desktop client
+
+---------------------------------------------------------------------------
+OWNERSHIP
+---------------------------------------------------------------------------
+
+SHTF Radio Networks retains all right, title, and interest in the Materials,
+including the BYON architecture, install automation, and documentation. Nothing
+in this license transfers ownership to you.
+
+---------------------------------------------------------------------------
+TERMINATION
+---------------------------------------------------------------------------
+
+This limited permission ends automatically if you violate any term. Upon
+termination you must stop using the Materials and delete all copies in your
+possession.
+
+---------------------------------------------------------------------------
+DISCLAIMER
+---------------------------------------------------------------------------
+
+THE MATERIALS ARE PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT. IN NO EVENT SHALL SHTF
+RADIO NETWORKS BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY ARISING
+FROM USE OF THE MATERIALS.
+
+---------------------------------------------------------------------------
+
+If you do not agree to these terms, do not clone, download, or use this
+repository.
+
+Questions or permission requests: contact Magic PTT administration via
+magicptt.com.
