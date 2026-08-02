@@ -1,0 +1,10 @@
+; Magic PTT BYON dialplan — Desktop SIP → local rpt node
+; Rollback: remove #include from extensions.conf and delete this file.
+
+[magicptt-byon]
+exten => ${BYON_NODE},1,NoOp(Magic PTT BYON Desktop -> rpt ${BYON_NODE})
+ same => n,Answer()
+ same => n,rpt(${BYON_NODE}|P)
+ same => n,Hangup()
+exten => ${BYON_SIP_USER},1,Goto(${BYON_NODE},1)
+exten => s,1,Goto(${BYON_NODE},1)
