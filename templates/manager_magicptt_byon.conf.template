@@ -1,0 +1,11 @@
+; Magic PTT BYON AMI user — ADDITIVE (BYON-ASL3 install)
+; Used by Magic PTT Desktop Repeater desk (status / link / commands).
+; Bind is LAN-oriented; change permit= if your Desktop subnet differs.
+
+[magicptt-byon]
+secret = __AMI_PASSWORD__
+deny = 0.0.0.0/0.0.0.0
+permit = __AMI_PERMIT__
+read = system,call,log,verbose,command,agent,user,config,dtmf,reporting,cdr,dialplan
+write = system,call,agent,user,config,command,reporting,originate
+writetimeout = 5000

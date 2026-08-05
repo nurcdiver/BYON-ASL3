@@ -1,0 +1,8 @@
+[Unit]
+Description=Magic PTT BYON Asterisk include restore
+After=network.target asterisk.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/magicptt-byon-reapply.sh
+Nice=10

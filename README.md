@@ -36,25 +36,31 @@ cd BYON-ASL3
 sudo ./install.sh \
   --node YOUR_NODE \
   --sip-user magicptt-byon \
-  --sip-password 'CHOOSE_A_STRONG_PASSWORD' \
-  --lan 192.168.1.0/24
+  --sip-password 'CHOOSE_A_STRONG_SIP_PASSWORD' \
+  --lan 192.168.1.0/24 \
+  --ami-user magicptt-byon \
+  --ami-password 'CHOOSE_A_STRONG_AMI_PASSWORD'
 ```
 
-Then on the **bridge PC** (Magic PTT Desktop, same LAN):
+Then on the **bridge PC** (Magic PTT Desktop **0.3.39+**, same LAN):
 
-1. My Room → **AllStarLink3** — enter node IP, node number, SIP user/password → Save  
-2. PTT page → **Start RF bridge**
+1. My Room → **AllStarLink3** — node IP, node number, SIP + AMI → Save  
+2. **Repeater desk** → AMI Login (linked peers, connect/disconnect, commands)  
+3. PTT page → **Start RF bridge**
 
-See `docs/SMOKE-TEST.md` for a full verification checklist.
+See `docs/SMOKE-TEST.md` and `docs/ASL-UPDATE-SURVIVE.md` (apt hook restores
+includes after ASL3 package updates wipe stock confs).
 
 ## What this repo contains
 
 | Path | Purpose |
 |------|---------|
-| `install.sh` | One-shot node prep (modules + transport + peer + dialplan) |
-| `scripts/` | Individual steps (for debugging or partial re-run) |
+| `install.sh` | One-shot node prep (modules + transport + peer + dialplan + AMI + apt hook) |
+| `scripts/` | Individual steps + `magicptt-byon-reapply.sh` |
+| `apt/` | `99-magicptt-byon` Post-Invoke hook |
+| `systemd/` | Daily reapply timer |
 | `templates/` | Parameterized Asterisk includes |
-| `docs/` | Architecture, phone-key discovery, smoke test |
+| `docs/` | Architecture, phone-key, update survival, smoke test |
 
 ## Phone PTT keying (critical)
 
@@ -65,7 +71,8 @@ Member nodes often use **`*99`** to key phone-mode PTT. Some central hub systems
 - AllStarLink3 on the same LAN as the bridge PC  
 - PJSIP enabled on the node (this repo automates that)  
 - UDP **5060** reachable from the bridge PC  
-- Magic PTT Desktop **0.3.23+** with AllStar Link enabled for your My Room  
+- Magic PTT Desktop **0.3.39+** with AllStar Link enabled for your My Room  
+- AMI port **5038** reachable from the Desktop PC (Repeater desk)
 
 ## License
 

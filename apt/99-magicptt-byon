@@ -1,0 +1,3 @@
+// Re-apply Magic PTT BYON Asterisk includes after ASL3 / Debian package updates.
+// Quiet no-op when markers are already present.
+DPkg::Post-Invoke {"/bin/bash /usr/local/sbin/magicptt-byon-reapply.sh || true";};
