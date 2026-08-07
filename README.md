@@ -31,9 +31,11 @@ Download Magic PTT Desktop from [magicptt.com](https://magicptt.com) (**0.3.23+*
 On the **ASL3 node** (SSH):
 
 ```bash
+sudo apt-get update
+sudo apt-get install -y git
 git clone https://github.com/nurcdiver/BYON-ASL3.git
 cd BYON-ASL3
-sudo ./install.sh \
+sudo bash ./install.sh \
   --node YOUR_NODE \
   --sip-user magicptt-byon \
   --sip-password 'CHOOSE_A_STRONG_SIP_PASSWORD' \
@@ -41,6 +43,8 @@ sudo ./install.sh \
   --ami-user magicptt-byon \
   --ami-password 'CHOOSE_A_STRONG_AMI_PASSWORD'
 ```
+
+Many ASL3 images do not include `git` until you install it.
 
 Then on the **bridge PC** (Magic PTT Desktop **0.3.39+**, same LAN):
 
