@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
-# Uncomment [transport-udp] bind 0.0.0.0:5060 in stock pjsip.conf.
+# Enable [transport-udp] bind 0.0.0.0:5060 in pjsip.conf.
+# Stock ASL3 often has a commented ;[transport-udp] block — uncomment it.
+# Some images omit that sample entirely — append a minimal transport.
 set -euo pipefail
 
 STAMP="$(date +%Y%m%d)"
@@ -8,8 +10,16 @@ cp /etc/asterisk/pjsip.conf "/etc/asterisk/pjsip.conf.backup-byon-${STAMP}"
 python3 <<'PY'
 from pathlib import Path
 import re
+
 p = Path("/etc/asterisk/pjsip.conf")
-lines = p.read_text().splitlines(True)
+text = p.read_text()
+lines = text.splitlines(True)
+
+# Already active — nothing to do (bind may already be set).
+if re.search(r"(?m)^\[transport-udp\]\s*$", text):
+    print("OK: [transport-udp] already present")
+    raise SystemExit(0)
+
 out, i, done = [], 0, False
 while i < len(lines):
     line = lines[i]
@@ -30,10 +40,23 @@ while i < len(lines):
         continue
     out.append(line)
     i += 1
-if not done:
-    raise SystemExit(";[transport-udp] block not found — edit pjsip.conf by hand")
-p.write_text("".join(out))
-print("OK: [transport-udp] bind=0.0.0.0:5060")
+
+if done:
+    p.write_text("".join(out))
+    print("OK: uncommented [transport-udp] bind=0.0.0.0:5060")
+    raise SystemExit(0)
+
+# No sample block — append minimal UDP transport (BYON LAN SIP).
+append = (
+    "\n"
+    "; Magic PTT BYON — added (stock pjsip.conf had no ;[transport-udp] sample)\n"
+    "[transport-udp]\n"
+    "type=transport\n"
+    "protocol=udp\n"
+    "bind=0.0.0.0:5060\n"
+)
+p.write_text("".join(out) + append)
+print("OK: appended [transport-udp] bind=0.0.0.0:5060")
 PY
 
 systemctl restart asterisk
