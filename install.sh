@@ -14,13 +14,24 @@ SIP_PASS=""
 LAN="192.168.1.0/24"
 AMI_USER="magicptt-byon"
 AMI_PASS=""
-# manager.conf permit= uses dotted mask, not CIDR
-AMI_PERMIT="192.168.0.0/255.255.0.0"
+# manager.conf permit= uses dotted mask, not CIDR. Empty → derive from --lan.
+AMI_PERMIT=""
+AMI_PERMIT_SET=0
 STATE_DIR="/var/lib/magicptt-byon"
 
 usage() {
   sed -n '2,12p' "$0"
   exit 1
+}
+
+# Convert CIDR (10.0.0.0/24) → AMI permit (10.0.0.0/255.255.255.0).
+cidr_to_ami_permit() {
+  local cidr="$1"
+  python3 - "$cidr" <<'PY'
+import ipaddress, sys
+n = ipaddress.ip_network(sys.argv[1], strict=False)
+print(f"{n.network_address}/{n.netmask}")
+PY
 }
 
 while [[ $# -gt 0 ]]; do
@@ -31,7 +42,7 @@ while [[ $# -gt 0 ]]; do
     --lan) LAN="$2"; shift 2 ;;
     --ami-user) AMI_USER="$2"; shift 2 ;;
     --ami-password) AMI_PASS="$2"; shift 2 ;;
-    --ami-permit) AMI_PERMIT="$2"; shift 2 ;;
+    --ami-permit) AMI_PERMIT="$2"; AMI_PERMIT_SET=1; shift 2 ;;
     -h|--help) usage ;;
     *) echo "Unknown option: $1"; usage ;;
   esac
@@ -40,7 +51,12 @@ done
 [[ -n "$NODE" && -n "$SIP_PASS" ]] || usage
 [[ "$(id -u)" -eq 0 ]] || { echo "Run as root (sudo ./install.sh …)"; exit 1; }
 
+if [[ "$AMI_PERMIT_SET" -eq 0 || -z "$AMI_PERMIT" ]]; then
+  AMI_PERMIT="$(cidr_to_ami_permit "$LAN")"
+fi
+
 echo "== BYON node prep: rpt ${NODE}, SIP user ${SIP_USER}, LAN ${LAN}"
+echo "   AMI permit ${AMI_PERMIT}"
 
 bash "$ROOT/scripts/01-enable-pjsip-modules.sh"
 bash "$ROOT/scripts/02-enable-transport-udp.sh"
