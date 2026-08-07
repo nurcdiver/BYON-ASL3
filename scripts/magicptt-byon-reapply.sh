@@ -66,6 +66,19 @@ full_reinstall_from_state() {
   bash "$root/install.sh" "${args[@]}" >>"$LOG" 2>&1
 }
 
+ensure_firewalld_ports() {
+  # Idempotent — ASL3 appliance firewalld drops AMI/SIP until opened.
+  local root=""
+  if [[ -f "$STATE_FILE" ]]; then
+    # shellcheck disable=SC1090
+    source "$STATE_FILE"
+    root="${INSTALL_ROOT:-}"
+  fi
+  if [[ -n "$root" && -f "$root/scripts/05-open-firewalld-ports.sh" ]]; then
+    bash "$root/scripts/05-open-firewalld-ports.sh" >>"$LOG" 2>&1 || true
+  fi
+}
+
 main() {
   touch "$LOG" 2>/dev/null || true
 
@@ -73,6 +86,8 @@ main() {
     log "SKIP: /etc/asterisk missing"
     exit 0
   fi
+
+  ensure_firewalld_ports
 
   if [[ "$FORCE" != "1" ]] && theme_ok; then
     exit 0
