@@ -77,6 +77,9 @@ else
   echo "      Re-run with --ami-password to enable Repeater desk login/link/commands."
 fi
 
+# ASL3 firewalld blocks 5038/5060 until opened (Randy node 2026-08-06).
+bash "$ROOT/scripts/05-open-firewalld-ports.sh"
+
 # Persist install args so apt reapply can restore after ASL package wipes.
 install -d -m 0750 "$STATE_DIR"
 umask 077
